@@ -114,19 +114,19 @@ for file_path in (FRONTEND_BUILD_DIR / 'static').glob('**/*'):
         except Exception as e:
             logging.error(f'An error occurred: {e}')
 
-frontend_favicon = FRONTEND_BUILD_DIR / 'static' / 'favicon.png'
+frontend_favicon = FRONTEND_BUILD_DIR / 'static' / 'favicon-HR.png'
 
 if frontend_favicon.exists():
     try:
-        shutil.copyfile(frontend_favicon, STATIC_DIR / 'favicon.png')
+        shutil.copyfile(frontend_favicon, STATIC_DIR / 'favicon-HR.png')
     except Exception as e:
         logging.error(f'An error occurred: {e}')
 
-frontend_splash = FRONTEND_BUILD_DIR / 'static' / 'splash.png'
+frontend_splash = FRONTEND_BUILD_DIR / 'static' / 'splash-HR.png'
 
 if frontend_splash.exists():
     try:
-        shutil.copyfile(frontend_splash, STATIC_DIR / 'splash.png')
+        shutil.copyfile(frontend_splash, STATIC_DIR / 'splash-HR.png')
     except Exception as e:
         logging.error(f'An error occurred: {e}')
 
@@ -195,7 +195,7 @@ if CUSTOM_NAME:
 
                 r = requests.get(url, stream=True)
                 if r.status_code == 200:
-                    with open(f'{STATIC_DIR}/favicon.png', 'wb') as f:
+                    with open(f'{STATIC_DIR}/favicon-HR.png', 'wb') as f:
                         r.raw.decode_content = True
                         shutil.copyfileobj(r.raw, f)
 
@@ -204,7 +204,7 @@ if CUSTOM_NAME:
 
                 r = requests.get(url, stream=True)
                 if r.status_code == 200:
-                    with open(f'{STATIC_DIR}/splash.png', 'wb') as f:
+                    with open(f'{STATIC_DIR}/splash-HR.png', 'wb') as f:
                         r.raw.decode_content = True
                         shutil.copyfileobj(r.raw, f)
 

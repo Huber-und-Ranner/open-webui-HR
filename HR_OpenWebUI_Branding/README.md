@@ -47,14 +47,6 @@ if WEBUI_NAME != 'Open WebUI':
 # WEBUI_NAME += ' (Open WebUI)'
 ```
 
-In Kombination mit:
-
-```yaml
-WEBUI_NAME=Huber&Ranner KI
-```
-
-wird dadurch der gewünschte Name der Anwendung verwendet.
-
 
 ## 4. Alte `her`-Theme-Blöcke aus `src/app.html` entfernen
 
@@ -95,7 +87,45 @@ ENV NODE_OPTIONS="--max-old-space-size=4096"
 
 Diese Änderung nur dann vornehmen, wenn sie tatsächlich erforderlich ist.
 
-## 6. Nach Änderungen
+
+## 6. Docker Image erstellen und nach GitHub (GHCR) pushen
+
+Um das fertige Image in die GitHub Container Registry (GHCR) zu übertragen, sind ein Zugriffstoken (PAT) sowie die passenden Build-Befehle notwendig.
+
+### Schritt 6.1: GitHub Personal Access Token (PAT) erstellen
+1. Melde dich bei GitHub an und gehe zu den **Settings** (Einstellungen deines Profils).
+2. Scrolle links ganz nach unten zu **Developer Settings**.
+3. Wähle **Personal access tokens** -> **Tokens (classic)**.
+4. Klicke auf **Generate new token** -> **Generate new token (classic)**.
+5. Gib dem Token einen Namen (z. B. `GHCR Access`) und wähle die Berechtigungen **write:packages** und **read:packages** (das Recht `repo` wird oft automatisch mit ausgewählt).
+6. Klicke unten auf **Generate token** und kopiere das Token sofort an einen sicheren Ort (es wird danach nicht mehr angezeigt).
+
+### Schritt 6.2: Im Terminal bei GHCR anmelden
+Nutze das kopierte Token, um dich im Terminal bei der GitHub Registry anzumelden:
+```bash
+echo "DEIN_KOPIERTES_TOKEN" | docker login ghcr.io -u DEIN_GITHUB_BENUTZERNAME --password-stdin
+```
+
+### Schritt 6.3: Image Version im Dockerfile anpassen
+Passe vor dem Build die Image-Version im `Dockerfile` an:
+```dockerfile
+ghcr.io/markusknauer-hr/open-webui-hr:VersionsNummer
+```
+*Ersetze `VersionsNummer` durch die aktuell gewünschte Version.*
+
+### Schritt 6.4: Image lokal bauen und pushen
+Erstelle das Image lokal (ersetze `NAMESPACE` durch den Namen deines persönlichen GitHub-Kontos oder der Organisation):
+```bash
+docker build -t ghcr.io/NAMESPACE/open-webui-hr:VersionsNummer .
+```
+
+Pushe das fertige Image im Anschluss in das GitHub Repository:
+```bash
+docker push ghcr.io/NAMESPACE/open-webui-hr:VersionsNummer
+```
+
+
+## 7. Nach Änderungen
 
 Nach Änderungen an Branding-Dateien, Frontend-Dateien oder Docker-Konfiguration Open WebUI neu bauen und neu starten.
 

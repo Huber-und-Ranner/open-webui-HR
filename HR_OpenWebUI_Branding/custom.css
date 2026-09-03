@@ -1,390 +1,667 @@
 /* ==========================================================================
-   HUBER & RANNER – Open WebUI Theme
-   Ziel:
-   - Mittelbereich in beiden Modi blau
-   - Sidebar jeweils dunkler als der Mittelbereich
-   - H&R-Blau für Primäraktionen
-   - möglichst wenige globale Eingriffe in Open-WebUI-Komponenten
+   HUBER & RANNER – Open WebUI Custom Theme
    ========================================================================== */
 
 :root {
-    /* Corporate / Primary */
-    --hr-brand: #0B4783;
-    --hr-primary: #1D4ED8;
-    --hr-primary-hover: #1E40AF;
-    --hr-primary-active: #1E3A8A;
+    --hr-brand-600: #2563eb;
+    --hr-brand-700: #1d4ed8;
+    --hr-brand-800: #1e40af;
+    --hr-brand-900: #1e3a8a;
+    --hr-focus: #2563eb;
 
-    /* Light Mode */
-    --hr-light-main: #F1F7FD;
-    --hr-light-sidebar: #DCEBFA;
-    --hr-light-surface: #E8F2FC;
-    --hr-light-surface-hover: #DBEAFE;
-    --hr-light-surface-active: #BFDBFE;
-    --hr-light-text: #0F172A;
-    --hr-light-text-secondary: #334155;
-    --hr-light-muted: #64748B;
-    --hr-light-border: #BFD7EE;
+    --hr-light-main-1: #f0f9ff;
+    --hr-light-main-2: #eff6ff;
+    --hr-light-main-3: #e0e7ff;
+    --hr-light-sidebar-1: #bfdbfe;
+    --hr-light-sidebar-2: #a9d2f3;
+    --hr-light-surface: #ffffff;
+    --hr-light-surface-soft: #f8fbff;
+    --hr-light-surface-blue: #eff6ff;
+    --hr-light-hover: #dbeafe;
+    --hr-light-active: #bfdbfe;
+    --hr-light-border: #bfdbfe;
+    --hr-light-border-strong: #93c5fd;
+    --hr-light-text: #0f172a;
+    --hr-light-text-secondary: #1e293b;
+    --hr-light-text-tertiary: #475569;
+    --hr-light-muted: #64748b;
 
-    /* Dark Mode */
-    --hr-dark-main: #111D2E;
-    --hr-dark-sidebar: #071426;
-    --hr-dark-surface: #172A43;
-    --hr-dark-surface-hover: #1D3554;
-    --hr-dark-surface-active: #234267;
-    --hr-dark-text: #F8FAFC;
-    --hr-dark-text-secondary: #CBD5E1;
-    --hr-dark-muted: #94A3B8;
-    --hr-dark-border: #2A405D;
+    --hr-dark-main-1: #0b1220;
+    --hr-dark-main-2: #0f1b2d;
+    --hr-dark-main-3: #111f35;
+    --hr-dark-sidebar-1: #07101e;
+    --hr-dark-sidebar-2: #0b1729;
+    --hr-dark-surface: #13233a;
+    --hr-dark-surface-2: #172a46;
+    --hr-dark-surface-3: #1d3557;
+    --hr-dark-hover: #1e3a5f;
+    --hr-dark-active: #244a76;
+    --hr-dark-border: #294566;
+    --hr-dark-border-strong: #3b5f85;
+    --hr-dark-text: #f8fafc;
+    --hr-dark-text-secondary: #e2e8f0;
+    --hr-dark-text-tertiary: #cbd5e1;
+    --hr-dark-muted: #94a3b8;
 
-    --hr-radius: 10px;
+    --hr-shadow-light: 0 8px 24px rgba(30, 64, 175, 0.10);
+    --hr-shadow-dark: 0 10px 28px rgba(0, 0, 0, 0.30);
 }
 
+/* 1. GLOBALER HINTERGRUND */
 
-/* ==========================================================================
-   1. APP / MITTELBEREICH
-   ========================================================================== */
+html,
+body {
+    min-height: 100%;
+}
 
 html:not(.dark),
-html:not(.dark) body,
-html:not(.dark) .app,
-html:not(.dark) .app > div,
-html:not(.dark) #chat-pane {
-    background-color: var(--hr-light-main) !important;
-    color: var(--hr-light-text);
+html:not(.dark) body {
+    color: var(--hr-light-text) !important;
+    background: linear-gradient(
+        135deg,
+        var(--hr-light-main-1) 0%,
+        var(--hr-light-main-2) 52%,
+        var(--hr-light-main-3) 100%
+    ) fixed !important;
 }
 
 html.dark,
-html.dark body,
-html.dark .app,
-html.dark .app > div,
-html.dark #chat-pane {
-    background-color: var(--hr-dark-main) !important;
-    color: var(--hr-dark-text);
+html.dark body {
+    color: var(--hr-dark-text) !important;
+    background: linear-gradient(
+        135deg,
+        var(--hr-dark-main-1) 0%,
+        var(--hr-dark-main-2) 52%,
+        var(--hr-dark-main-3) 100%
+    ) fixed !important;
+}
+
+html:not(.dark) main,
+html:not(.dark) #chat-pane,
+html:not(.dark) #notes-container,
+html:not(.dark) #workspace-container,
+html:not(.dark) .app,
+html.dark main,
+html.dark #chat-pane,
+html.dark #notes-container,
+html.dark #workspace-container,
+html.dark .app {
+    background: transparent !important;
 }
 
 
-/* ==========================================================================
-   2. SIDEBAR
-   Sidebar ist absichtlich dunkler als der Mittelbereich.
-   ========================================================================== */
+/* 2. LINKE SIDEBAR */
 
 html:not(.dark) #sidebar {
-    background-color: var(--hr-light-sidebar) !important;
-    border-right: 1px solid var(--hr-light-border) !important;
+    background: linear-gradient(
+        180deg,
+        var(--hr-light-sidebar-1) 0%,
+        var(--hr-light-sidebar-2) 100%
+    ) !important;
+    border-right: 1px solid var(--hr-light-border-strong) !important;
     color: var(--hr-light-text-secondary) !important;
 }
 
 html.dark #sidebar {
-    background-color: var(--hr-dark-sidebar) !important;
+    background: linear-gradient(
+        180deg,
+        var(--hr-dark-sidebar-1) 0%,
+        var(--hr-dark-sidebar-2) 100%
+    ) !important;
     border-right: 1px solid var(--hr-dark-border) !important;
     color: var(--hr-dark-text-secondary) !important;
 }
 
-#sidebar a,
-#sidebar button {
-    transition:
-        background-color 0.15s ease,
-        color 0.15s ease;
-}
-
 html:not(.dark) #sidebar a,
-html:not(.dark) #sidebar button {
-    color: var(--hr-light-text-secondary) !important;
+html:not(.dark) #sidebar button,
+html:not(.dark) #sidebar span {
+    color: var(--hr-light-text-secondary);
 }
 
 html.dark #sidebar a,
-html.dark #sidebar button {
-    color: var(--hr-dark-text-secondary) !important;
+html.dark #sidebar button,
+html.dark #sidebar span {
+    color: var(--hr-dark-text-secondary);
 }
 
 html:not(.dark) #sidebar a:hover,
 html:not(.dark) #sidebar button:hover {
-    background-color: var(--hr-light-surface-hover) !important;
-    color: var(--hr-brand) !important;
+    background-color: rgba(255, 255, 255, 0.55) !important;
+    color: var(--hr-brand-900) !important;
 }
 
 html.dark #sidebar a:hover,
 html.dark #sidebar button:hover {
-    background-color: var(--hr-dark-surface-hover) !important;
-    color: #93C5FD !important;
+    background-color: var(--hr-dark-hover) !important;
+    color: #bfdbfe !important;
 }
 
 html:not(.dark) #sidebar a[aria-current="page"],
+html:not(.dark) #sidebar [data-state="active"],
 html:not(.dark) #sidebar .selected {
-    background-color: var(--hr-light-surface-active) !important;
-    color: var(--hr-brand) !important;
+    background-color: rgba(255, 255, 255, 0.72) !important;
+    color: var(--hr-brand-900) !important;
 }
 
 html.dark #sidebar a[aria-current="page"],
+html.dark #sidebar [data-state="active"],
 html.dark #sidebar .selected {
-    background-color: var(--hr-dark-surface-active) !important;
-    color: #93C5FD !important;
+    background-color: var(--hr-dark-active) !important;
+    color: #dbeafe !important;
+}
+
+/* ==========================================================================
+   SIDEBAR HEADER – LOGO 48px / NAME KOMPAKT / BUTTON ZENTRIERT
+   ========================================================================== */
+
+/* Header */
+#sidebar .sidebar.px-1 {
+    display: grid !important;
+
+    grid-template-columns: 48px 120px 30px !important;
+
+    align-items: center !important;
+
+    column-gap: 8px !important;
+
+    height: 52px !important;
+
+    padding: 2px 4px !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* Link um das Logo */
+#sidebar .sidebar.px-1 > a:first-of-type {
+    width: 48px !important;
+    height: 48px !important;
+
+    min-width: 48px !important;
+    min-height: 48px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 0 !important;
+}
+
+
+/* Logo selbst */
+#sidebar .sidebar-new-chat-icon {
+    width: 48px !important;
+    height: 48px !important;
+
+    min-width: 48px !important;
+    min-height: 48px !important;
+
+    max-width: 48px !important;
+    max-height: 48px !important;
+
+    object-fit: contain !important;
+
+    border-radius: 0 !important;
 }
 
 
 /* ==========================================================================
-   3. LOGIN
-   Die Login-Seite verwendet in dieser Open-WebUI-Version #auth-page,
-   #auth-container und #auth-login-card.
+   SIDEBAR NAME – VERTIKAL ZENTRIERT
    ========================================================================== */
 
-html:not(.dark) #auth-page,
-html:not(.dark) #auth-page > div:first-child,
-html:not(.dark) #auth-container {
-    background-color: var(--hr-light-main) !important;
+#sidebar .sidebar.px-1 > a:has(#sidebar-webui-name) {
+    width: 120px !important;
+    max-width: 120px !important;
+    min-width: 0 !important;
+
+    flex: none !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+
+    height: 48px !important;
+}
+
+#sidebar-webui-name {
+    width: 120px !important;
+    max-width: 120px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    align-self: center !important;
+
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+}
+
+
+/* --------------------------------------------------------------------------
+   SCHLIESSEN-BUTTON
+   -------------------------------------------------------------------------- */
+
+/* Rechter Container */
+#sidebar .sidebar.px-1 > div:last-of-type {
+    width: 30px !important;
+    height: 30px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    margin: 0 !important;
+}
+
+
+/* Button */
+#sidebar button[aria-label="Seitenleiste schließen"] {
+    width: 30px !important;
+    height: 30px !important;
+
+    min-width: 30px !important;
+    min-height: 30px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+
+/* Icon */
+#sidebar button[aria-label="Seitenleiste schließen"] svg {
+    width: 16px !important;
+    height: 16px !important;
+}
+
+
+
+
+/* 3. RECHTE CHAT-CONTROL-SIDEBAR */
+
+html:not(.dark) #controls-container {
+    background: linear-gradient(
+        180deg,
+        var(--hr-light-sidebar-1) 0%,
+        var(--hr-light-sidebar-2) 100%
+    ) !important;
+    color: var(--hr-light-text-secondary) !important;
+    border-left: 1px solid var(--hr-light-border-strong) !important;
+}
+
+html.dark #controls-container {
+    background: linear-gradient(
+        180deg,
+        var(--hr-dark-sidebar-1) 0%,
+        var(--hr-dark-sidebar-2) 100%
+    ) !important;
+    color: var(--hr-dark-text-secondary) !important;
+    border-left: 1px solid var(--hr-dark-border) !important;
+}
+
+html:not(.dark) #controls-container > div,
+html.dark #controls-container > div {
+    background: transparent !important;
+}
+
+html:not(.dark) #controls-container button:hover {
+    background-color: rgba(255, 255, 255, 0.5) !important;
+    color: var(--hr-brand-900) !important;
+}
+
+html.dark #controls-container button:hover {
+    background-color: var(--hr-dark-hover) !important;
+    color: #dbeafe !important;
+}
+
+html:not(.dark) #controls-resizer {
+    border-left-color: var(--hr-light-border-strong) !important;
+}
+
+html.dark #controls-resizer {
+    border-left-color: var(--hr-dark-border) !important;
+}
+
+
+/* 4. TEXT / KONTRAST */
+
+html:not(.dark) .text-gray-950,
+html:not(.dark) .text-gray-900,
+html:not(.dark) .text-gray-800 {
     color: var(--hr-light-text) !important;
 }
 
-html.dark #auth-page,
-html.dark #auth-page > div:first-child,
-html.dark #auth-container {
-    background-color: var(--hr-dark-main) !important;
-    color: var(--hr-dark-text) !important;
-}
-
-#auth-login-card {
-    color: inherit !important;
-}
-
-/* Login-Logo, falls Open WebUI es mittig rendert */
-#auth-login-card img#logo {
-    object-fit: contain !important;
-}
-
-/* Auth-Eingabefelder */
-html:not(.dark) #auth-page input,
-html:not(.dark) #auth-page textarea,
-html:not(.dark) #auth-page select {
-    background-color: var(--hr-light-surface) !important;
-    color: var(--hr-light-text) !important;
-    border: 1px solid var(--hr-light-border) !important;
-    border-radius: var(--hr-radius) !important;
-    min-height: 44px;
-}
-
-html.dark #auth-page input,
-html.dark #auth-page textarea,
-html.dark #auth-page select {
-    background-color: var(--hr-dark-surface) !important;
-    color: var(--hr-dark-text) !important;
-    border: 1px solid var(--hr-dark-border) !important;
-    border-radius: var(--hr-radius) !important;
-    min-height: 44px;
-}
-
-html:not(.dark) #auth-page input::placeholder,
-html:not(.dark) #auth-page textarea::placeholder {
-    color: var(--hr-light-muted) !important;
-}
-
-html.dark #auth-page input::placeholder,
-html.dark #auth-page textarea::placeholder {
-    color: var(--hr-dark-muted) !important;
-}
-
-#auth-page input:focus,
-#auth-page textarea:focus,
-#auth-page select:focus {
-    border-color: var(--hr-primary) !important;
-    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.16) !important;
-    outline: none !important;
-}
-
-html:not(.dark) #auth-page label {
+html:not(.dark) .text-gray-700,
+html:not(.dark) .text-gray-600 {
     color: var(--hr-light-text-secondary) !important;
 }
 
-html.dark #auth-page label {
+html:not(.dark) .text-gray-500,
+html:not(.dark) .text-gray-400 {
+    color: var(--hr-light-text-tertiary) !important;
+}
+
+html:not(.dark) .text-gray-300 {
+    color: var(--hr-light-muted) !important;
+}
+
+html.dark .text-white,
+html.dark .text-gray-50,
+html.dark .text-gray-100,
+html.dark .text-gray-200 {
+    color: var(--hr-dark-text) !important;
+}
+
+html.dark .text-gray-300 {
     color: var(--hr-dark-text-secondary) !important;
 }
 
-
-/* ==========================================================================
-   4. CHAT-EINGABE
-   ========================================================================== */
-
-html:not(.dark) #chat-input-container {
-    background-color: transparent !important;
-    color: var(--hr-light-text) !important;
+html.dark .text-gray-400,
+html.dark .text-gray-500 {
+    color: var(--hr-dark-text-tertiary) !important;
 }
 
-html.dark #chat-input-container {
-    background-color: transparent !important;
-    color: var(--hr-dark-text) !important;
+html.dark .text-gray-600 {
+    color: var(--hr-dark-muted) !important;
 }
 
-/* Textareas, die Open WebUI weiterhin verwendet */
-html:not(.dark) #chat-pane textarea {
+html:not(.dark) input::placeholder,
+html:not(.dark) textarea::placeholder {
+    color: var(--hr-light-muted) !important;
+    opacity: 1 !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+    color: var(--hr-dark-muted) !important;
+    opacity: 1 !important;
+}
+
+
+/* 5. ALLGEMEINE FLÄCHEN */
+
+html:not(.dark) .bg-white {
     background-color: var(--hr-light-surface) !important;
-    color: var(--hr-light-text) !important;
-    border-color: var(--hr-light-border) !important;
 }
 
-html.dark #chat-pane textarea {
+html:not(.dark) .bg-gray-50 {
+    background-color: var(--hr-light-surface-soft) !important;
+}
+
+html:not(.dark) .bg-gray-100 {
+    background-color: var(--hr-light-surface-blue) !important;
+}
+
+html:not(.dark) .bg-gray-200 {
+    background-color: #dbeafe !important;
+}
+
+html.dark .bg-gray-950,
+html.dark .bg-gray-900 {
     background-color: var(--hr-dark-surface) !important;
-    color: var(--hr-dark-text) !important;
-    border-color: var(--hr-dark-border) !important;
+}
+
+html.dark .bg-gray-800 {
+    background-color: var(--hr-dark-surface-2) !important;
+}
+
+html.dark .bg-gray-700 {
+    background-color: var(--hr-dark-surface-3) !important;
+}
+
+html.dark .dark\:bg-gray-950,
+html.dark .dark\:bg-gray-900 {
+    background-color: var(--hr-dark-surface) !important;
+}
+
+html.dark .dark\:bg-gray-850,
+html.dark .dark\:bg-gray-800 {
+    background-color: var(--hr-dark-surface-2) !important;
 }
 
 
-/* ==========================================================================
-   5. PRIMÄRAKTIONEN
-   ========================================================================== */
+/* 6. MODALS / EINSTELLUNGEN / DIALOGE */
 
-button[type="submit"],
-.bg-blue-600,
-.bg-blue-700 {
-    background-color: var(--hr-primary) !important;
-    color: #FFFFFF !important;
-}
-
-button[type="submit"] {
-    border: 1px solid var(--hr-primary) !important;
-    border-radius: var(--hr-radius) !important;
-    min-height: 44px;
-    font-weight: 600 !important;
-}
-
-button[type="submit"]:hover,
-.hover\:bg-blue-700:hover,
-.hover\:bg-blue-800:hover {
-    background-color: var(--hr-primary-hover) !important;
-    border-color: var(--hr-primary-hover) !important;
-}
-
-button[type="submit"]:active {
-    background-color: var(--hr-primary-active) !important;
-}
-
-
-/* ==========================================================================
-   6. LINKS / BLAUE TEXTE
-   ========================================================================== */
-
-.text-blue-500,
-.text-blue-600,
-.text-blue-700,
-.text-blue-800,
-a.text-blue-500,
-a.text-blue-600,
-a.text-blue-700 {
-    color: var(--hr-primary) !important;
-}
-
-a.text-blue-500:hover,
-a.text-blue-600:hover,
-a.text-blue-700:hover {
-    color: var(--hr-primary-hover) !important;
-}
-
-html.dark .text-blue-400,
-html.dark .text-blue-500,
-html.dark .text-blue-600,
-html.dark a.text-blue-400,
-html.dark a.text-blue-500,
-html.dark a.text-blue-600 {
-    color: #60A5FA !important;
-}
-
-
-/* ==========================================================================
-   7. MENÜS / DROPDOWNS
-   Bewusst auf role-Elemente begrenzt und nicht auf alle .bg-white-Flächen.
-   ========================================================================== */
+/* Kein Styling direkt auf [role="dialog"]:
+   dadurch bleiben Größe und Position von Open WebUI erhalten. */
 
 html:not(.dark) [role="menu"],
 html:not(.dark) [role="listbox"] {
-    background-color: #F8FBFF !important;
-    border: 1px solid var(--hr-light-border) !important;
+    background-color: var(--hr-light-surface) !important;
     color: var(--hr-light-text) !important;
-    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12) !important;
+    border: 1px solid var(--hr-light-border) !important;
+    box-shadow: var(--hr-shadow-light) !important;
 }
 
 html.dark [role="menu"],
 html.dark [role="listbox"] {
     background-color: var(--hr-dark-surface) !important;
-    border: 1px solid var(--hr-dark-border) !important;
     color: var(--hr-dark-text) !important;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35) !important;
+    border: 1px solid var(--hr-dark-border) !important;
+    box-shadow: var(--hr-shadow-dark) !important;
 }
 
 html:not(.dark) [role="menuitem"]:hover,
 html:not(.dark) [role="option"]:hover {
-    background-color: var(--hr-light-surface-hover) !important;
+    background-color: var(--hr-light-hover) !important;
+    color: var(--hr-brand-900) !important;
 }
 
 html.dark [role="menuitem"]:hover,
 html.dark [role="option"]:hover {
-    background-color: var(--hr-dark-surface-hover) !important;
+    background-color: var(--hr-dark-hover) !important;
+    color: var(--hr-dark-text) !important;
 }
 
 html:not(.dark) [aria-selected="true"] {
-    background-color: var(--hr-light-surface-active) !important;
-    color: var(--hr-brand) !important;
+    background-color: var(--hr-light-active) !important;
+    color: var(--hr-brand-900) !important;
 }
 
 html.dark [aria-selected="true"] {
-    background-color: var(--hr-dark-surface-active) !important;
-    color: #93C5FD !important;
-}
-
-
-/* ==========================================================================
-   8. FORM-CONTROLS / ACCESSIBILITY
-   ========================================================================== */
-
-input[type="checkbox"],
-input[type="radio"] {
-    accent-color: var(--hr-primary) !important;
-}
-
-[role="switch"][aria-checked="true"] {
-    background-color: var(--hr-primary) !important;
-}
-
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-    outline: 2px solid var(--hr-primary) !important;
-    outline-offset: 2px;
-}
-
-button:disabled,
-input:disabled,
-textarea:disabled,
-select:disabled {
-    opacity: 0.55 !important;
-}
-
-
-/* ==========================================================================
-   9. CODE / TABELLEN
-   ========================================================================== */
-
-html:not(.dark) pre {
-    background-color: var(--hr-light-surface) !important;
-    border: 1px solid var(--hr-light-border) !important;
-}
-
-html.dark pre {
-    background-color: #0A1524 !important;
-    border: 1px solid var(--hr-dark-border) !important;
-}
-
-html.dark code {
-    color: #BFDBFE;
-}
-
-html:not(.dark) th {
-    background-color: var(--hr-light-surface) !important;
-    color: var(--hr-light-text) !important;
-}
-
-html.dark th {
-    background-color: var(--hr-dark-surface) !important;
+    background-color: var(--hr-dark-active) !important;
     color: var(--hr-dark-text) !important;
+}
+
+/* Modal-Innenflächen nur farblich anpassen;
+   keine Größen-/Positionsregeln. */
+
+html:not(.dark) .modal .bg-white,
+html:not(.dark) .modal .bg-gray-50,
+html:not(.dark) .modal .bg-gray-100 {
+    background-color: #ffffff !important;
+}
+
+html.dark .modal .dark\:bg-gray-900,
+html.dark .modal .dark\:bg-gray-850,
+html.dark .modal .dark\:bg-gray-800 {
+    background-color: var(--hr-dark-surface) !important;
+}
+
+
+/* 7. INPUTS / TEXTAREAS / SELECTS */
+
+html:not(.dark) input:not([type="checkbox"]):not([type="radio"]),
+html:not(.dark) textarea,
+html:not(.dark) select {
+    background-color: rgba(255, 255, 255, 0.92) !important;
+    color: var(--hr-light-text) !important;
+    border-color: var(--hr-light-border-strong) !important;
+}
+
+html.dark input:not([type="checkbox"]):not([type="radio"]),
+html.dark textarea,
+html.dark select {
+    background-color: var(--hr-dark-surface-2) !important;
+    color: var(--hr-dark-text) !important;
+    border-color: var(--hr-dark-border-strong) !important;
+}
+
+html:not(.dark) input:hover,
+html:not(.dark) textarea:hover,
+html:not(.dark) select:hover {
+    border-color: #60a5fa !important;
+}
+
+html.dark input:hover,
+html.dark textarea:hover,
+html.dark select:hover {
+    border-color: #5b82ad !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--hr-focus) !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18) !important;
+    outline: none !important;
+}
+
+
+/* 8. CHAT-EINGABE / SCHREIBFENSTER */
+
+html:not(.dark) #chat-input-container {
+    background-color: rgba(255, 255, 255, 0.88) !important;
+    border: 1px solid var(--hr-light-border-strong) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 2px 10px rgba(30, 64, 175, 0.08) !important;
+}
+
+html.dark #chat-input-container {
+    background-color: rgba(19, 35, 58, 0.96) !important;
+    border: 1px solid var(--hr-dark-border-strong) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.24) !important;
+}
+
+html:not(.dark) #chat-input-container > div,
+html.dark #chat-input-container > div {
+    background: transparent !important;
+    border-color: transparent !important;
+}
+
+html:not(.dark) #chat-input-container:focus-within {
+    border-color: var(--hr-brand-600) !important;
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.12),
+        0 3px 12px rgba(30, 64, 175, 0.10) !important;
+}
+
+html.dark #chat-input-container:focus-within {
+    border-color: #60a5fa !important;
+    box-shadow:
+        0 0 0 3px rgba(96, 165, 250, 0.12),
+        0 4px 16px rgba(0, 0, 0, 0.28) !important;
+}
+
+html:not(.dark) .bg-gray-50\/50,
+html:not(.dark) .bg-white\/80,
+html:not(.dark) .bg-white\/90 {
+    background-color: rgba(255, 255, 255, 0.86) !important;
+}
+
+html.dark .dark\:bg-gray-800\/80,
+html.dark .dark\:bg-gray-900\/80 {
+    background-color: rgba(19, 35, 58, 0.92) !important;
+}
+
+
+/* 9. BUTTONS / PRIMÄRAKTIONEN */
+
+button[type="submit"],
+.bg-blue-600,
+.bg-blue-700 {
+    background-color: var(--hr-brand-700) !important;
+    color: #ffffff !important;
+}
+
+button[type="submit"]:hover,
+.hover\:bg-blue-700:hover,
+.hover\:bg-blue-800:hover {
+    background-color: var(--hr-brand-800) !important;
+    color: #ffffff !important;
+}
+
+button[type="submit"]:active,
+.bg-blue-800,
+.bg-blue-900 {
+    background-color: var(--hr-brand-900) !important;
+    color: #ffffff !important;
+}
+
+html:not(.dark) .bg-blue-50 {
+    background-color: #eff6ff !important;
+}
+
+html:not(.dark) .bg-blue-100 {
+    background-color: #dbeafe !important;
+}
+
+html:not(.dark) .bg-blue-200 {
+    background-color: #bfdbfe !important;
+}
+
+.text-blue-500,
+.text-blue-600,
+.text-blue-700,
+.text-blue-800 {
+    color: var(--hr-brand-700) !important;
+}
+
+html.dark .text-blue-400,
+html.dark .text-blue-500,
+html.dark .text-blue-600 {
+    color: #93c5fd !important;
+}
+
+
+/* 10. BORDERS / TABELLEN */
+
+html:not(.dark) .border-gray-50,
+html:not(.dark) .border-gray-100,
+html:not(.dark) .border-gray-200,
+html:not(.dark) .border-gray-300 {
+    border-color: var(--hr-light-border) !important;
+}
+
+html.dark .border-gray-600,
+html.dark .border-gray-700,
+html.dark .border-gray-800,
+html.dark .dark\:border-gray-700,
+html.dark .dark\:border-gray-800 {
+    border-color: var(--hr-dark-border) !important;
+}
+
+html:not(.dark) table {
+    color: var(--hr-light-text-secondary) !important;
+}
+
+html.dark table {
+    color: var(--hr-dark-text-secondary) !important;
+}
+
+html:not(.dark) thead,
+html:not(.dark) th {
+    background-color: rgba(255, 255, 255, 0.78) !important;
+    color: var(--hr-light-text) !important;
+    border-color: var(--hr-light-border) !important;
+}
+
+html.dark thead,
+html.dark th {
+    background-color: var(--hr-dark-surface-2) !important;
+    color: var(--hr-dark-text) !important;
+    border-color: var(--hr-dark-border) !important;
 }
 
 html:not(.dark) td {
@@ -395,24 +672,137 @@ html.dark td {
     border-color: var(--hr-dark-border) !important;
 }
 
+html:not(.dark) tbody tr:hover {
+    background-color: rgba(219, 234, 254, 0.60) !important;
+}
 
-/* ==========================================================================
-   10. TOOLTIP / SCROLLBAR / SELECTION
-   ========================================================================== */
+html.dark tbody tr:hover {
+    background-color: var(--hr-dark-hover) !important;
+}
+
+
+/* 11. LOGIN */
+
+html:not(.dark) #auth-page,
+html:not(.dark) #auth-page > div:first-child,
+html:not(.dark) #auth-container {
+    background: linear-gradient(
+        135deg,
+        var(--hr-light-main-1) 0%,
+        var(--hr-light-main-2) 52%,
+        var(--hr-light-main-3) 100%
+    ) fixed !important;
+    color: var(--hr-light-text) !important;
+}
+
+html.dark #auth-page,
+html.dark #auth-page > div:first-child,
+html.dark #auth-container {
+    background: linear-gradient(
+        135deg,
+        var(--hr-dark-main-1) 0%,
+        var(--hr-dark-main-2) 52%,
+        var(--hr-dark-main-3) 100%
+    ) fixed !important;
+    color: var(--hr-dark-text) !important;
+}
+
+html:not(.dark) #auth-page label {
+    color: var(--hr-light-text-secondary) !important;
+}
+
+html.dark #auth-page label {
+    color: var(--hr-dark-text-secondary) !important;
+}
+
+html:not(.dark) #auth-page h1,
+html:not(.dark) #auth-page h2,
+html:not(.dark) #auth-page h3 {
+    color: var(--hr-light-text) !important;
+}
+
+html.dark #auth-page h1,
+html.dark #auth-page h2,
+html.dark #auth-page h3 {
+    color: var(--hr-dark-text) !important;
+}
+
+
+/* 12. CODE / MARKDOWN */
+
+html:not(.dark) pre {
+    background-color: #ffffff !important;
+    color: var(--hr-light-text) !important;
+    border: 1px solid var(--hr-light-border) !important;
+    box-shadow: 0 2px 10px rgba(30, 64, 175, 0.06);
+}
+
+html.dark pre {
+    background-color: #081321 !important;
+    color: var(--hr-dark-text) !important;
+    border: 1px solid var(--hr-dark-border) !important;
+}
+
+html:not(.dark) code:not(pre code) {
+    background-color: #dbeafe !important;
+    color: #1e3a8a !important;
+}
+
+html.dark code:not(pre code) {
+    background-color: #1d3557 !important;
+    color: #dbeafe !important;
+}
+
+html:not(.dark) blockquote {
+    border-left-color: var(--hr-brand-700) !important;
+    color: var(--hr-light-text-secondary) !important;
+}
+
+html.dark blockquote {
+    border-left-color: #60a5fa !important;
+    color: var(--hr-dark-text-secondary) !important;
+}
+
+
+/* 13. CHECKBOX / RADIO / SWITCH / FOKUS */
+
+input[type="checkbox"],
+input[type="radio"] {
+    accent-color: var(--hr-brand-700) !important;
+}
+
+[role="switch"][aria-checked="true"] {
+    background-color: var(--hr-brand-700) !important;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--hr-focus) !important;
+    outline-offset: 2px;
+}
+
+
+/* 14. TOOLTIPS */
 
 [role="tooltip"] {
-    background-color: #0F172A !important;
-    color: #FFFFFF !important;
-    border: 1px solid #1E293B !important;
+    background-color: #0f172a !important;
+    color: #ffffff !important;
+    border: 1px solid #334155 !important;
 }
+
+
+/* 15. SCROLLBARS */
 
 html {
     scrollbar-width: thin;
-    scrollbar-color: #9DBFDD transparent;
+    scrollbar-color: #7aaed2 transparent;
 }
 
 html.dark {
-    scrollbar-color: #334B69 transparent;
+    scrollbar-color: #3b5f85 transparent;
 }
 
 ::-webkit-scrollbar {
@@ -425,41 +815,258 @@ html.dark {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #9DBFDD;
+    background: #7aaed2;
     border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #7FA9CF;
+    background: #5c95be;
 }
 
 html.dark ::-webkit-scrollbar-thumb {
-    background: #334B69;
+    background: #3b5f85;
 }
 
 html.dark ::-webkit-scrollbar-thumb:hover {
-    background: #476381;
+    background: #5278a0;
 }
 
+
+/* 16. TEXTAUSWAHL / DISABLED */
+
 ::selection {
-    background: #BFDBFE;
-    color: #0F172A;
+    background: #bfdbfe;
+    color: #0f172a;
 }
 
 html.dark ::selection {
-    background: rgba(59, 130, 246, 0.32);
-    color: #FFFFFF;
+    background: rgba(59, 130, 246, 0.45);
+    color: #ffffff;
+}
+
+button:disabled,
+input:disabled,
+textarea:disabled,
+select:disabled {
+    opacity: 0.58 !important;
 }
 
 
 /* ==========================================================================
-   11. MOBILE
+   17. CHAT-COMPOSER BUTTONS
    ========================================================================== */
 
-@media (max-width: 640px) {
-    #auth-login-card {
-        width: calc(100% - 32px) !important;
-        max-width: 440px;
-        margin-inline: auto;
-    }
+/*
+Buttons innerhalb der Eingabe:
+• blau
+• weißes Icon
+• in beiden Modi identisch
+*/
+
+html:not(.dark) #chat-input-container button,
+html.dark #chat-input-container button {
+    background-color: var(--hr-brand-700) !important;
+    color: #ffffff !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* Icons */
+
+html:not(.dark) #chat-input-container button svg,
+html.dark #chat-input-container button svg {
+    color: #ffffff !important;
+    stroke: currentColor !important;
+}
+
+/* Hover */
+
+html:not(.dark) #chat-input-container button:hover,
+html.dark #chat-input-container button:hover {
+    background-color: var(--hr-brand-800) !important;
+    color: #ffffff !important;
+}
+
+/* Active */
+
+html:not(.dark) #chat-input-container button:active,
+html.dark #chat-input-container button:active {
+    background-color: var(--hr-brand-900) !important;
+    color: #ffffff !important;
+}
+
+/* Focus */
+
+html:not(.dark) #chat-input-container button:focus,
+html.dark #chat-input-container button:focus {
+    color: #ffffff !important;
+    outline: none !important;
+}
+
+
+/* ==========================================================================
+   18. VOICE BUTTON
+   ========================================================================== */
+
+#chat-input-container #voice-input-button {
+    background-color: var(--hr-brand-700) !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+#chat-input-container #voice-input-button svg {
+    color: #ffffff !important;
+}
+
+#chat-input-container #voice-input-button:hover {
+    background-color: var(--hr-brand-800) !important;
+    color: #ffffff !important;
+}
+
+
+/* ==========================================================================
+   19. CHAT-COMPOSER – WEISSE / SCHWARZE BUTTONS ÜBERSCHREIBEN
+   ========================================================================== */
+
+html:not(.dark) #chat-input-container button.bg-white,
+html:not(.dark) #chat-input-container button.bg-black,
+html:not(.dark) #chat-input-container button.dark\:bg-white,
+html.dark #chat-input-container button.bg-white,
+html.dark #chat-input-container button.bg-black,
+html.dark #chat-input-container button.dark\:bg-white {
+    background-color: var(--hr-brand-700) !important;
+    color: #ffffff !important;
+}
+
+/* Hover */
+
+html:not(.dark) #chat-input-container button.hover\:bg-gray-100:hover,
+html:not(.dark) #chat-input-container button.hover\:bg-gray-200:hover,
+html.dark #chat-input-container button.hover\:bg-gray-100:hover,
+html.dark #chat-input-container button.hover\:bg-gray-200:hover {
+    background-color: var(--hr-brand-800) !important;
+    color: #ffffff !important;
+}
+
+
+/* ==========================================================================
+   20. WEITERE PRIMÄRE AKTIONSBUTTONS
+   ========================================================================== */
+
+/*
+Open WebUI verwendet an verschiedenen Stellen
+schwarze Buttons im Light Mode bzw. weiße Buttons im Dark Mode.
+
+Diese echten Aktionsbuttons werden vereinheitlicht.
+*/
+
+button[type="submit"],
+button.bg-black,
+button.bg-blue-500,
+button.bg-blue-600,
+button.bg-blue-700,
+button[class*="dark:bg-white"],
+[role="dialog"] button.bg-black,
+[role="dialog"] button[class*="dark:bg-white"] {
+    background-color: var(--hr-brand-700) !important;
+    color: #ffffff !important;
+    border-color: transparent !important;
+}
+
+/* Icons */
+
+button[type="submit"] svg,
+button.bg-black svg,
+button.bg-blue-500 svg,
+button.bg-blue-600 svg,
+button.bg-blue-700 svg,
+button[class*="dark:bg-white"] svg {
+    color: #ffffff !important;
+    stroke: currentColor !important;
+}
+
+/* Hover */
+
+button[type="submit"]:hover,
+button.bg-black:hover,
+button.bg-blue-500:hover,
+button.bg-blue-600:hover,
+button.bg-blue-700:hover,
+button[class*="dark:bg-white"]:hover,
+.hover\:bg-blue-700:hover,
+.hover\:bg-blue-800:hover {
+    background-color: var(--hr-brand-800) !important;
+    color: #ffffff !important;
+}
+
+/* Active */
+
+button[type="submit"]:active,
+button.bg-black:active,
+button.bg-blue-500:active,
+button.bg-blue-600:active,
+button.bg-blue-700:active,
+button[class*="dark:bg-white"]:active {
+    background-color: var(--hr-brand-900) !important;
+    color: #ffffff !important;
+}
+
+/* Disabled */
+
+button[type="submit"]:disabled,
+button.bg-black:disabled,
+button[class*="dark:bg-white"]:disabled {
+    background-color: var(--hr-brand-700) !important;
+    color: #ffffff !important;
+    opacity: 0.45 !important;
+}
+
+
+/* ==========================================================================
+   21. LOGIN – GLEICHE FELDGRÖSSEN
+   ========================================================================== */
+
+#auth-page form {
+    width: 100% !important;
+}
+
+#auth-page form input:not([type="checkbox"]):not([type="radio"]) {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: var(--hr-control-height) !important;
+    min-height: var(--hr-control-height) !important;
+    box-sizing: border-box !important;
+    border-radius: var(--hr-control-radius) !important;
+}
+
+#auth-page input[type="email"],
+#auth-page input[type="password"],
+#auth-page input[name="email"],
+#auth-page input[name="password"] {
+    width: 100% !important;
+    height: var(--hr-control-height) !important;
+    min-height: var(--hr-control-height) !important;
+    box-sizing: border-box !important;
+}
+
+/*
+Platz für das Eye-Icon,
+ohne dass das Passwortfeld dadurch schmaler wird.
+*/
+
+#auth-page input[type="password"] {
+    padding-right: 44px !important;
+}
+
+/* Login Button */
+
+#auth-page button[type="submit"] {
+    width: 100% !important;
+    min-height: var(--hr-control-height) !important;
+    background-color: var(--hr-brand-700) !important;
+    color: #ffffff !important;
+}
+
+#auth-page button[type="submit"]:hover {
+    background-color: var(--hr-brand-800) !important;
 }

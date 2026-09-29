@@ -4,6 +4,12 @@ Diese Anleitung dokumentiert alle Anpassungen, die ausgehend vom Originalzustand
 
 Ziel ist, dass das Repository auch von einer anderen Person gepflegt und das Rebranding nach einem Update oder einer Neuinstallation nachvollziehbar wiederhergestellt werden kann.
 
+## Standard
+
+Main Branch syncen mit openwebui
+merge Main in feature/rebranding
+
+Solange keine Konflikte auftreten weiter ab Schritt 6
 
 ## 1. Branding-Dateien kopieren
 

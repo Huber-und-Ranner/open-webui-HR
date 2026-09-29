@@ -112,12 +112,11 @@ Nutze das kopierte Token, um dich im Terminal bei der GitHub Registry anzumelden
 echo "DEIN_KOPIERTES_TOKEN" | docker login ghcr.io -u DEIN_GITHUB_BENUTZERNAME --password-stdin
 ```
 
-### Schritt 6.3: Image Version im Dockerfile anpassen
-Passe vor dem Build die Image-Version im `docker-compose` an:
+### Schritt 6.3: Image Version anpassen
+Passe vor dem Build das genutzte Image im `docker-compose` an:
 ```yaml
-ghcr.io/NAMESPACE/open-webui-hr:VersionsNummer
+image: ghcr.io/open-webui/open-webui:open-webui-HR-feature-branding
 ```
-*Ersetze `VersionsNummer` durch die aktuell gewünschte Version.*
 
 ### Schritt 6.4: Image lokal bauen und pushen
 Erstelle das Image lokal (ersetze `NAMESPACE` durch den Namen deines persönlichen GitHub-Kontos oder der Organisation):

@@ -113,8 +113,8 @@ echo "DEIN_KOPIERTES_TOKEN" | docker login ghcr.io -u DEIN_GITHUB_BENUTZERNAME -
 ```
 
 ### Schritt 6.3: Image Version im Dockerfile anpassen
-Passe vor dem Build die Image-Version im `Dockerfile` an:
-```dockerfile
+Passe vor dem Build die Image-Version im `docker-compose` an:
+```yaml
 ghcr.io/NAMESPACE/open-webui-hr:VersionsNummer
 ```
 *Ersetze `VersionsNummer` durch die aktuell gewünschte Version.*
